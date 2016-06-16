@@ -5,7 +5,6 @@ from ncclient import manager
 import logging, sys, os
 from urlparse import parse_qs
 
-
 def nc_connect(host, port, user, password):
     return manager.connect(host=host,
                            port=port,
@@ -16,7 +15,6 @@ def nc_connect(host, port, user, password):
                            look_for_keys=False,
                            timeout=30
             )
-
 
 def parse_hello(connection):
     capabilities = []
