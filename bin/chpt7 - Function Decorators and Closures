@@ -1,0 +1,75 @@
+print('--------CHAPTER 7: Function Decorators and Closures--------')
+# function decorators - let us 'mark' functions in source code to enhance their 
+# behavior in some way
+
+# global variables
+# hold references to functions decorated by @register
+registry = []
+
+# User Defined Functions
+print('- Functions')
+print('  * deco()')
+print('  * target()')
+print('  * register()')
+print('  * f1()')
+print('  * f2()')
+print('  * f3()')
+print('  * main()')
+
+def deco(func):
+  def inner():
+    print('running inner()')
+  # deco returns inner function
+  return inner
+
+# target is decorated by deco
+@deco
+def target():
+  print('running target()')
+
+# takes function as an argument
+def register(func):
+  # display what function is being decorated
+  print('running(%s)' % func)
+  # Include func in registry
+  registry.append(func)
+  # return func that was received as argument
+  return func
+
+# decorate f1 and f2 with @register
+@register
+def f1():
+  print('running f1()')
+
+@register
+def f2():
+  print('running f2()')
+
+# not decorated
+def f3():
+  print('running f3()')
+
+# displays the registery
+# calls f1, f2, and f3
+def main():
+  print('running main()')
+  print('registry ->', registry)
+  f1()
+  f2()
+  f3()
+
+# __main__
+print('\nSECTION: Decorators 101')
+print('-'*60)
+# decorator - a callable that takes another function as argument
+# - may perform some processing with the decorated function 
+# - may return it or replaces it with another function or callable object
+# - change behavior at runtime (metaprogramming)
+print('Invoke Target():', target())
+# target references def inner() from def deco()
+print('Inspect Target():', target)
+
+print('\nSECTION: When Python Executes Decorators')
+print('-'*60)
+#invoke main() function
+main()

@@ -98,7 +98,7 @@ assumes port 830, user same as OS, and password cisco
 EXAMPLES:
 
 a)
-nleiva$ python netconfxr.py 172.16.159.113
+$ python netconfxr.py 172.16.159.113
 Session ID:  4895
 
 Capabilities:
@@ -145,6 +145,6 @@ Capabilities:
            YANG --> Cisco-IOS-XR-tty-server-oper
            YANG --> Cisco-IOS-XR-tty-vty-cfg
            YANG --> Cisco-IOS-XR-types
-nleiva$
+$
 
 '''
