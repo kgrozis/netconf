@@ -6,7 +6,7 @@
       "type": "python",
       "request": "launch",
       "program": "${file}",
-      "pythonPath": "python",
+      "pythonPath": "python3",
       "debugOptions": [
         "WaitOnAbnormalExit",
         "WaitOnNormalExit",

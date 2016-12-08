@@ -4,13 +4,11 @@ Python: 2.7
 Description: Connects to router using NetConf.  Once connected retrieve YANG XML models.
 '''
 
-#from ydk.services import CRUDService
-from ydk.services import NetconfService
+from ydk.services import NetconfService, Datastore
 from ydk.providers import NetconfServiceProvider
-#from ydk.models.cisco_ios_xr import Cisco_IOS_XR_shellutil_oper \
-#    as xr_shellutil_oper
-#from datetime import timedelta
-
+from ydk.models.cisco_ios_xr import Cisco_IOS_XR_ip_domain_cfg \
+    as xr_ip_domain_cfg
+import logging
 
 if __name__ == "__main__":
     # create NETCONF session
@@ -19,21 +17,18 @@ if __name__ == "__main__":
                                       username="cisco",
                                       password="cisco",
                                       protocol="ssh")
+
+   # Create NetConfService instance
     cfg = NetconfService()
+
+    # Commit XRv9K prior to retrieving configuration
     print(cfg.commit(provider))
-    #cfg = get_config(provider)
-    # create CRUD service
-    #crud = CRUDService()
 
-    # create system time object
-    #system_time = xr_shellutil_oper.SystemTime()
+    # create object 
+    ip_domain = xr_ip_domain_cfg.IpDomain()
 
-    # read system time from device
-    #system_time = crud.read(provider, system_time)
-
-    # print system uptime
-    #print("System uptime is " +
-    #     str(timedelta(seconds=system_time.uptime.uptime)))
+    # get configuration from netconf device 
+    ip_domain = cfg.get_config(provider, Datastore.running, ip_domain)
 
     # close NETCONF session and exit
     provider.close()

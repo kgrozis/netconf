@@ -1,5 +1,6 @@
 // Place your settings in this file to overwrite default and user settings.
 {
    "python.pythonPath": "python3", 
-   "extensions.autoUpdate": true
+  "extensions.autoUpdate": true,
+  "python.linting.pylintEnabled": false
 }

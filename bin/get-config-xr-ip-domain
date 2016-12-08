@@ -1,0 +1,18 @@
+
+from ydk.services import NetconfService, Datastore
+from ydk.providers import NetconfServiceProvider
+from ydk.models.cisco_ios_xr import Cisco_IOS_XR_ip_domain_cfg \
+    as xr_ip_domain_cfg
+
+provider = NetconfServiceProvider(address="10.82.79.35",
+                                      port=830,
+                                      username="cisco",
+                                      password="cisco",
+                                      protocol="ssh")
+netconf = NetconfService()
+ip_domain = xr_ip_domain_cfg.IpDomain()  
+
+ip_domain = netconf.get_config(provider, Datastore.running, ip_domain)
+
+provider.close()
+exit()
