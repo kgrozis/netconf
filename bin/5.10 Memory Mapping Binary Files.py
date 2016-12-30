@@ -22,6 +22,19 @@ m = memory_map('data')
 print(len(m))
 print('index 0:10:', m[0:10])
 print('index 0:', m[0])
+# Reassing a slice 
+m[0:11] = b'Hello World'
+m.close()
+# Verify that changes were made 
+with open('data', 'rb') as f:
+  print(f.read(11))
+f.closed
+
+# use mmap as a context manager & auto close file
+with memory_map('data') as m:
+  print(len(m))
+  print(m[0:10])
+m.closed
 
 print('\n!---SECTION---\n')
 
